@@ -35,5 +35,24 @@ export class FooComponent {
       this.loading = false;
       });
      }
+     //L'operazione di post necessita un parametro in più.
+//Viene creata una stringa (JSON.strigify) a partire da un oggetto Typescript
+ makeCompactPost(): void {
+  this.loading = true;
+  this.http
+    .post('https://jsonplaceholder.typicode.com/posts',
+      JSON.stringify({
+        body: 'bar',
+        title: 'foo',
+        userId: 1
+      })
+    )
+    .subscribe(data => {
+      this.data = data;
+      this.loading = false;
+    });
+}
+
+
 }
 
