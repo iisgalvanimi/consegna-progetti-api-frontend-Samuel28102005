@@ -21,4 +21,19 @@ ngOnInit(): void {
     
   
 }
+fetchdatiCarta(CartaCaro : string): void{
+  this.loading = true;
+  const url = `https://api.scryfall.com/cards/named?fuzzy=${CartaCaro}`; // Usare backticks
+  this.http.get(url).subscribe(
+    (data) => {
+      this.datiCarta = data;
+      this.loading = false;
+    },
+    (error) => {
+      console.error('Carta non trovata', error);
+      this.loading = false;
+    }
+  );
+}
+
 }
